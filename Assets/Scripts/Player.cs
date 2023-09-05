@@ -1,22 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float maxHealth;
+    private Attributes attributes;
 
     void Start()
     {
-        transform.Find("Health Bar").GetComponent<HealthBar>().maxHealth = maxHealth;
-        transform.Find("Health Bar").GetComponent<HealthBar>().health = maxHealth;
+        attributes = gameObject.GetComponent<Attributes>();
     }
 
     public void ReceiveDamage(float damage)
     {
-        transform.Find("Health Bar").GetComponent<HealthBar>().health -= damage;
+        attributes.ReceiveDamage(damage);
 
-        if (transform.Find("Health Bar").GetComponent<HealthBar>().health <= 0)
+        if (attributes.Died())
         {
             Destroy(gameObject);
         }

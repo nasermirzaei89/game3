@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4571337979787051435}
   - component: {fileID: 8788716062902285465}
   - component: {fileID: 2394933771144611343}
+  - component: {fileID: 4202024515386583922}
   m_Layer: 0
   m_Name: Opponent
   m_TagString: Untagged
@@ -99,8 +100,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
+  maxHealth: 0
+--- !u!114 &4202024515386583922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103396965479565671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8207091f7e1a4b48b270dc72e1deb95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   health: 0
   maxHealth: 0
+  healthRegenerationRate: 0
+  primaryAttribute: 0
+  movementSpeed: 0
+  sightRange: 0
+  attackDamage: 0
+  attackRange: 0
+  attackSpeed: 0
 --- !u!1001 &6139132794451100352
 PrefabInstance:
   m_ObjectHideFlags: 0

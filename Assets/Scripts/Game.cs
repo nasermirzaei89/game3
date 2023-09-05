@@ -46,9 +46,11 @@ public class Game : MonoBehaviour
 
         if (CanMovePlayerTo(destination))
         {
+            player.GetComponent<Attributes>().Clock();
             player.transform.position = destination;
         } else if (GetOpponentAt(destination) != null)
         {
+            player.GetComponent<Attributes>().Clock();
             AttackOpponentAt(destination);
         } else
         {

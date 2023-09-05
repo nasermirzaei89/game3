@@ -2,10 +2,15 @@ using UnityEngine;
 
 public class HealthBar : MonoBehaviour
 {
-    public float health, maxHealth;
+    public Attributes attributes;
+
+    void Start()
+    {
+        attributes = transform.parent.GetComponent<Attributes>();
+    }
 
     void Update()
     {
-        transform.Find("Bar").localScale= new Vector3(health/maxHealth, 1, 1);
+        transform.Find("Bar").localScale= new Vector3(attributes.health / attributes.maxHealth, 1, 1);
     }
 }

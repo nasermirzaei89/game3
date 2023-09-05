@@ -5,11 +5,7 @@ public class Opponent : MonoBehaviour
 {
     private GameObject controller;
     private GameObject player;
-
-    public float speed;
-    private float energy;
-
-    public float maxHealth;
+    private Attributes attributes;
 
 
     void Start()
@@ -20,8 +16,7 @@ public class Opponent : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player");
 
-        transform.Find("Health Bar").GetComponent<HealthBar>().maxHealth = maxHealth;
-        transform.Find("Health Bar").GetComponent<HealthBar>().health = maxHealth;
+        attributes = gameObject.GetComponent<Attributes>();
     }
 
     void OnDestroy()
@@ -31,12 +26,10 @@ public class Opponent : MonoBehaviour
 
     public void Move()
     {
-        energy += speed;
+        attributes.Clock();
 
-        while (energy >= 1)
+        while (attributes.Move())
         {
-            energy -= 1;
-
             var distance = player.transform.position - transform.position;
 
             if (Mathf.Abs(distance.x) >= Mathf.Abs(distance.y))
@@ -139,15 +132,15 @@ public class Opponent : MonoBehaviour
         return false;
     }
 
-    private void MoveTo(Vector3 position) {
+    private void MoveTo(Vector2 position) {
         transform.position = position;
     }
 
     public void ReceiveDamage(float damage)
     {
-        transform.Find("Health Bar").GetComponent<HealthBar>().health -= damage;
+        attributes.ReceiveDamage(damage);
 
-        if (transform.Find("Health Bar").GetComponent<HealthBar>().health <= 0)
+        if (attributes.Died())
         {
             Destroy(gameObject);
         }
@@ -155,6 +148,6 @@ public class Opponent : MonoBehaviour
 
     private void AttackPlayer()
     {
-        player.GetComponent<Player>().ReceiveDamage(1);
+        player.GetComponent<Player>().ReceiveDamage(attributes.Damage());
     }
 }
